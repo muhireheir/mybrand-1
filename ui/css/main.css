@@ -1,0 +1,265 @@
+/* base style*/
+*{
+	box-sizing:border-box;
+	padding:0px;
+	margin:0px;
+}@font-face{
+	font-family: "Red Hat Text";
+	src:url('../fonts/Redhat/RedHatText-Regular.ttf');
+}
+@font-face{
+	font-family: "Roboto";
+	src:url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+p{
+	display:block !important;
+}
+h3{
+	display: block !important;
+}
+html,body{
+	width:100%;
+	height:100%;
+}
+section{
+	width:100%;
+}
+/* navbar */
+.navigation{
+	min-height:50px;
+	
+	position:fixed;
+	z-index:2;
+	padding:0px 30px 0px 30px;
+	background:#9B51E0;
+	top:0px;
+}
+.logo{
+	font-family:'Red Hat text';
+	color:#f2f2f2;
+	font-size:25px;
+	font-weight:bold;
+	line-height:50px;
+	text-decoration:none;
+}
+.menu-toggler{
+	width:30px;
+	height:30px;
+	position: absolute;
+	top:10px;
+	right:30px;
+	appearance: none;
+	display:none;
+}
+.menu-toggler:before{
+	content: "\f0c9";
+	font-family:"fontAwesome";
+	color:#f2f2f2;
+	font-size:25px;
+	width:100%;
+	height:100%;
+	margin:auto;
+}
+.navbar{
+	float:right;
+	right:40px;
+	position: relative;
+	height:50px;
+	
+}
+.navbar >.navbar-items{
+	padding:0px;
+	position: relative;
+	right:0px;
+	height:100%;
+	
+}
+.navbar > .navbar-items >.navbar-nav{
+	list-style-type:none;
+	display:inline-block;
+	height:100%;
+	font-family:'Red Hat Text';
+	font-size:16px;
+}
+.navbar > .navbar-items >.navbar-nav > .nav-link{
+	display:block;
+	width:100%;
+	height:100%;
+	padding:3px;
+	line-height:44px;
+	text-decoration:none;
+	color:#f2f2f2;
+}
+/* end of navbar */
+.section-lg{
+	height:100%;
+	background:#9B51E0;
+}
+.section-md{
+	height:80%;
+	
+}
+.section-sm{
+	height:60%;
+}
+.section-xs{
+	height:40%;
+}
+.section-heading{
+	color:#f2f2f2;
+	font-family:'Roboto'
+}
+.container{
+	width:96%;
+	height:96%;
+	position: relative;
+	top:2%;
+	left:2%;
+	padding:10px;
+
+}
+.section-content{
+	width:100%;
+	height:calc(98% - 10px);
+	padding:10px 0px 0px 0px;
+}
+/* footer */
+#footer{
+	background-color:#9B51E0;
+	background-image:url('../img/Vector2.png');
+	background-repeat:no-repeat;
+	background-position-y:0px;
+	display:flex;
+	align-items:center;
+	align-content:center;
+	flex-flow:wrap;
+	font-family:calibri;
+	color:#f2f2f2;
+	padding-left:30px;
+}
+#footer >div{
+	width:100%;
+
+
+}
+/*end  of base style*/
+/*plofile page*/
+
+#plofile-section{
+	margin-top:50px;
+	position:relative;
+	background:#BB7DF5;
+}
+.plofile-box-main{
+	width:88%;
+	height:88%;
+	margin-top:1.5%;
+	position:absolute;
+	margin-left:6%;
+	display:flex;
+	flex-flow:wrap;
+	flex-wrap: wrap;
+	background:rgba(232, 220, 243,0.31);
+	box-sizing:border-box;
+	padding:3% 2% 1% 4%;
+	border-radius:10px; 
+	align-content:flex-start;
+}
+#plofile-pic{
+	width:26%;
+	height:60%;	
+}
+
+.img{
+	width:100%;
+	height:100%;
+
+
+}
+.img  > img{
+	width:60%;
+	height:auto;
+	border-radius:10px;
+}
+#plofile-desc{
+	width:50%;
+	
+}
+.name{
+	color:#f2f2f2;
+	font-family: 'Roboto';
+	font-size:15px;
+	margin-top:10px;
+	margin-left:10px;
+}
+#plofile-desc{
+	color:#f2f2f2;
+	font-family:calibri;
+}
+.desc{
+	margin-top:14px;
+	font-size:15px;
+}
+#skills{
+	background:#BB7DF5;
+	color:#f2f2f2;
+	font-family:calibri;
+	padding-top:30px;
+}
+/*skills box*/
+.skills-box-2{
+	width:100%;
+	height:80%;
+	margin-top:15px;
+	display:flex;
+	flex-flow: wrap;
+	justify-content:space-around;
+}
+.skills-box-2 >div{
+	width:45%;
+	height:60%;
+
+}
+
+.skill{
+
+	width:80%;
+	height:auto;
+	margin-top:15px;
+}
+
+.progressbar{
+	width:80%;
+	border-radius:10px;
+	height:18px;
+	background:#f2f2f2;
+	position:relative;
+	margin-top:2px;
+	border:1px  solid #9B51E0;
+
+}
+.progressbar-loader{
+	height:100%;
+	background:#9B51E0;
+	border-radius:10px;
+}
+#skills-php{
+width:80%;
+}
+#skills-html{
+width:90%;
+}
+
+#skills-vue{
+width:70%;
+}
+
+#skills-node{
+width:50%;
+}
+#skills-css{
+width:70%;
+}
+#skills-jquery{
+width:40%;
+}
