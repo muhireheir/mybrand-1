@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UMUHIRE Heritier</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="../libs/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+</head>
+<body>
+<section class="navigation">
+		<a href="" class="logo">heir.</a>
+		<input type="checkbox"class="menu-toggler"/>
+		<nav class="navbar">
+			<ul class="navbar-items">
+				<li class="navbar-nav"><a class="nav-link" href="../index.html">Home</a></li>
+				<li class="navbar-nav"><a class="nav-link" href="plofile.html">About Me</a> </li>
+				<li class="navbar-nav"><a class="nav-link" href="contact.html">Contact</a> </li>
+				<li class="navbar-nav"><a class="nav-link" href="blog.html">Blog</a> </li>
+				<li class="navbar-nav"><a class="nav-link" href="login.html">Sign in</a> </li>
+			</ul>
+		</nav>
+	</section>
+	<section class="section-sm" id="contact-section">
+		<div class="contacts-group">
+			<div id="contact-adress">
+				<ul>
+					<li>
+						<i class="fa fa-envelope  contact-icon"></i> <span class="contact-value">muhire416@gmail.com</span>
+					</li>
+					<li>
+						<i class="fa fa-phone  contact-icon"></i> <span class="contact-value">+25 0786910057</span>
+					</li>
+					<li>
+						<i class="fa fa-phone  contact-icon"></i> <span class="contact-value">+25 0724933240</span>
+					</li>
+					<li>
+						<i class="fa fa-map-marker  contact-icon"></i> <span class="contact-value">RUSIZI ,KAMEMBE, 1<sup>er</sup>Av 067</span>
+					</li>
+					
+				</ul>
+
+			</div>
+			<div id="contact-form">
+				<div class="form-wrapper">
+					<div class="c-form">
+			<h4 class="auth-form-title">SEND ME A MESSAGE</h4>
+			<div class="inputs-wrapper">
+				<form name="cform" onsubmit="return validatecontactform();">
+					<label class="form-icon" id="usericon"><input class="form-control" type="text" name="name" placeholder="Full name">
+						<label class="form_error" id="name_error"></label>
+					</label>
+					
+					<label class="form-icon" id="emailicon"><input class="form-control" type="text" name="email" placeholder="email">
+					<label class="form_error" id="email_error"></label></label>
+					<label class="form-icon" id="comment">
+						<textarea placeholder="Your Message" name="msg" class="textarea"></textarea>
+						<label class="form_error" id="msg_error"></label>
+					</label>
+					<button class="form-btn" type="submit"> Send</button>
+				</form>
+			</div>
+		</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+		<!-- FOOTER -->
+	<section class="section-xs" id="footer">
+		<div   class="footer-wrapper">
+			<div id="title-footer">
+				<h2>Do you have a project? let's talk.</h2>
+			</div>
+
+			<div id="social-icons">
+			 <div  class="icon">
+			 	<i class="fa fa-facebook"></i>
+			 </div>
+			 <div  class="icon">
+			 	<i class="fa fa-twitter"></i>
+			 </div>
+			 <div  class="icon">
+			 	<i class="fa fa-linkedin"></i>
+			 </div>
+			</div>
+		</div>
+	</section>
+	<!-- END OF FOOTER -->
+		<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+	   <script type="text/javascript" src="js/firebase.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
