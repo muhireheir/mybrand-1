@@ -63,6 +63,40 @@
 		</div>
 	</section>
 	<!-- END OF FOOTER -->
+<script type="text/javascript">
 
+	let loginvalidation =()=>{
+	let emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	let email=document.forms['signInForm']['username'].value.replace(/\s/g,"");
+	let password=document.forms['signInForm']['password'].value.replace(/\s/g,"");
+	let usernameError=document.querySelector("#username_error");
+	let passwordError=document.querySelector("#password_error");
+	if(email.match(emailRegex) && password.length>=6){
+		return false;
+	}else{
+		// invalid inputs
+
+		if(!email.match(emailRegex)){
+			document.forms['signInForm']['username'].style['border']='1px solid #ff8080'
+			usernameError.innerHTML='Invalid email Adress'
+		}else{
+			document.forms['signInForm']['username'].style['border']='1px solid #9B51E0'
+			usernameError.innerHTML=''
+		}
+
+		if (password.length < 6){
+			document.forms['signInForm']['password'].style['border']='1px solid #ff8080'
+			passwordError.innerHTML='6 chars at minmum'
+		}else{
+			document.forms['signInForm']['password'].style['border']='1px solid #9B51E0'
+			passwordError.innerHTML=''
+		}
+		// invalid inputs
+		return false;
+	}
+
+	return false;
+}
+</script>
 </body>
 </html>
