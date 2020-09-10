@@ -66,5 +66,60 @@
 	</section>
 	<!-- END OF FOOTER -->
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script type="text/javascript">
+	
+	let validateregform =()=>{
+	let name=document.forms['registerform']['name'].value;
+	let email=document.forms['registerform']['email'].value.replace(/\s/g,"");
+	let password1=document.forms['registerform']['password1'].value.replace(/\s/g,"");
+	let password2=document.forms['registerform']['password2'].value.replace(/\s/g,"");
+	let emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	// 
+	let name_error=document.querySelector("#name_error");
+	let email_error=document.querySelector("#email_error");
+	let password_error=document.querySelector("#password_error");
+	if(email.match(emailRegex) && (password1===password2) && password1.length>=6 && name.length>=4){
+		
+		return false;
+	}else{
+		// 
+		if (name.length<=4){
+			document.forms['registerform']['name'].style['border']='1px solid #ff8080'
+			name_error.innerHTML="Invalid Name"
+
+		}else{
+			document.forms['registerform']['name'].style['border']='1px solid #9B51E0'
+			name_error.innerHTML=""
+		}
+
+		if(email.match(emailRegex)){
+			document.forms['registerform']['email'].style['border']='1px solid #9B51E0'
+			email_error.innerHTML=""
+		}else{
+			document.forms['registerform']['email'].style['border']='1px solid #ff8080'
+			email_error.innerHTML="Invalid Email Address"
+		}
+		if(password2.length<6 || password1.length <6){
+			document.forms['registerform']['password1'].style['border']='1px solid #ff8080'
+			document.forms['registerform']['password2'].style['border']='1px solid #ff8080'
+			password_error.innerHTML="6 chars at minmum"
+		}else{
+			if(password1!==password2){
+			document.forms['registerform']['password1'].style['border']='1px solid #ff8080'
+			document.forms['registerform']['password2'].style['border']='1px solid #ff8080'
+			password_error.innerHTML="Passwords don't match"
+		}else{
+			document.forms['registerform']['password1'].style['border']='1px solid #9B51E0'
+			document.forms['registerform']['password2'].style['border']='1px solid #9B51E0'
+		}
+
+		}
+
+		
+		return false;
+	}
+	return false;
+}
+</script>
 </body>
 </html>
