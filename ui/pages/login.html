@@ -63,69 +63,6 @@
 		</div>
 	</section>
 	<!-- END OF FOOTER -->
-<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
-<script type="text/javascript" src="js/firebase.js"></script>
-<script type="text/javascript" src="js/loader.js"></script>
-<script type="text/javascript">
-	let loginvalidation =()=>{
-	let emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	let email=document.forms['signInForm']['username'].value.replace(/\s/g,"");
-	let password=document.forms['signInForm']['password'].value.replace(/\s/g,"");
-	let usernameError=document.querySelector("#username_error");
-	let passwordError=document.querySelector("#password_error");
-	if(email.match(emailRegex) && password.length>=6){
-		document.querySelector(".loader-overlay").style.display="block";
-		auth.signInWithEmailAndPassword(email,password).then(resp=>{
-			let userInfo=resp.user;
-			let uid=userInfo.uid;
-			db.collection('users').doc(uid).get().then(dt=>{
-				let AdminRole=dt.data().admin;
-				if(AdminRole==true){
-					window.location.href='admin/index.html';
-				}else{
-					let comm=localStorage.getItem('auth-first');
-					if(comm==null || comm==undefined){
-						 window.location.href='account.html';
-					}else{
-						localStorage.removeItem('auth-first');
-						window.location.href='singleblog.html'+comm;
-					}
-				}
 
-			})
-		}).catch(err=>{
-			document.querySelector(".loader-overlay").style.display="none";
-			document.querySelector("#auth-error").innerHTML="Invalid Credentials"
-			document.querySelector("#auth-error").style.display="block";
-		})
-		return false;
-	}else{
-		// invalid inputs
-
-		if(!email.match(emailRegex)){
-			document.forms['signInForm']['username'].style['border']='1px solid #ff8080'
-			usernameError.innerHTML='Invalid email Adress'
-		}else{
-			document.forms['signInForm']['username'].style['border']='1px solid #9B51E0'
-			usernameError.innerHTML=''
-		}
-
-		if (password.length < 6){
-			document.forms['signInForm']['password'].style['border']='1px solid #ff8080'
-			passwordError.innerHTML='6 chars at minmum'
-		}else{
-			document.forms['signInForm']['password'].style['border']='1px solid #9B51E0'
-			passwordError.innerHTML=''
-		}
-		// invalid inputs
-		return false;
-	}
-
-	return false;
-}
-document.querySelector(".loader-overlay").style.display="none";
-</script>
 </body>
 </html>
