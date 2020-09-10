@@ -19,7 +19,8 @@
 				<li class="navbar-nav"><a class="nav-link" href="plofile.html">About Me</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="contact.html">Contact</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="blog.html">Blog</a> </li>
-				<li class="navbar-nav"><a class="nav-link" href="login.html">Sign in</a> </li>
+				<li class="navbar-nav"  id="showsignIn"><a class="nav-link" href="login.html">login</a> </li>
+				<li class="navbar-nav"  id="showplofile"><a class="nav-link" href="account.html">Account</a> </li>
 			</ul>
 		</nav>
 	</section>
@@ -63,8 +64,24 @@
 		</div>
 	</section>
 	<!-- END OF FOOTER -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+<script type="text/javascript" src="../js/firebase.js"></script>
+<script type="text/javascript" src="../js/loader.js"></script>
+<script type="text/javascript" src="../js/auth.js"></script>
 <script type="text/javascript">
+let long=null;
+let lat=null;
 
+let showPosition=(position)=>{
+ lat=position.coords.latitude;
+ long=position.coords.longitude;
+}
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+ }
 	let loginvalidation =()=>{
 	let emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	let email=document.forms['signInForm']['username'].value.replace(/\s/g,"");
@@ -72,6 +89,32 @@
 	let usernameError=document.querySelector("#username_error");
 	let passwordError=document.querySelector("#password_error");
 	if(email.match(emailRegex) && password.length>=6){
+		document.querySelector(".loader-overlay").style.display="block";
+		auth.signInWithEmailAndPassword(email,password).then(resp=>{
+			let userInfo=resp.user;
+			let uid=userInfo.uid;
+			localStorage.setItem('loggeduser',userInfo.uid);
+			db.collection('logs').add({uid:uid,latitude:lat,longitude:long,loggedAt:firebase.firestore.FieldValue.serverTimestamp()});
+			db.collection('users').doc(uid).get().then(dt=>{
+				let AdminRole=dt.data().admin;
+				if(AdminRole==true){
+					window.location.href='admin/index.html';
+				}else{
+					let comm=localStorage.getItem('auth-first');
+					if(comm==null || comm==undefined){
+						 window.location.href='account.html';
+					}else{
+						localStorage.removeItem('auth-first');
+						window.location.href='singleblog.html'+comm;
+					}
+				}
+
+			})
+		}).catch(err=>{
+			document.querySelector(".loader-overlay").style.display="none";
+			document.querySelector("#auth-error").innerHTML="Invalid Credentials"
+			document.querySelector("#auth-error").style.display="block";
+		})
 		return false;
 	}else{
 		// invalid inputs
@@ -97,6 +140,7 @@
 
 	return false;
 }
+document.querySelector(".loader-overlay").style.display="none";
 </script>
 </body>
 </html>
