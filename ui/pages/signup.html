@@ -66,8 +66,23 @@
 	</section>
 	<!-- END OF FOOTER -->
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script type="text/javascript">
-	
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+<script type="text/javascript" src="../js/firebase.js"></script>
+ <script type="text/javascript" src="../js/auth.js"></script>
+<script type="text/javascript">
+	let long=null;
+let lat=null;
+
+let showPosition=(position)=>{
+ lat=position.coords.latitude;
+ long=position.coords.longitude;
+}
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+ }
 	let validateregform =()=>{
 	let name=document.forms['registerform']['name'].value;
 	let email=document.forms['registerform']['email'].value.replace(/\s/g,"");
@@ -79,7 +94,21 @@
 	let email_error=document.querySelector("#email_error");
 	let password_error=document.querySelector("#password_error");
 	if(email.match(emailRegex) && (password1===password2) && password1.length>=6 && name.length>=4){
-		
+		auth.createUserWithEmailAndPassword(email,password2).then(cred=>{
+			db.collection('users').doc(cred.user.uid).set({email:email,name:name,admin:false,created_at:firebase.firestore.FieldValue.serverTimestamp()}).then(re=>{
+               cred.user.sendEmailVerification().then(()=>{
+               	localStorage.setItem('loggeduser',cred.user.uid);
+               	db.collection('logs').add({uid:cred.user.uid,latitude:lat,longitude:long,loggedAt:firebase.firestore.FieldValue.serverTimestamp()});
+               	window.location.href="account.html";
+               });
+               
+			}).catch(errr=>{
+				console.log(err);
+			})
+			
+		}).catch(err=>{
+			alert(err);
+		})
 		return false;
 	}else{
 		// 
