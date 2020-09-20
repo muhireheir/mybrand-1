@@ -1,7 +1,8 @@
 {
     "env":{
-        "PORT":3000,
+        "PORT":2000,
         "PSWD":"root",
-        "DBNAME":"mybrand"
+        "DBNAME":"mybrand",
+        "JWT_KEY":"JwTkeyFormMy_ForMybraNdProject"
     }
 }

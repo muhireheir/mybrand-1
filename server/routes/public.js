@@ -1,7 +1,6 @@
 import express from 'express'
 const router = express.Router()
-router.use((req,res,next)=>{
-    res.status(200).json({
-        message:'working'
-    })
+router.get('/',(req,res,next)=>{
 })
+
+module.exports=router
