@@ -1,7 +1,8 @@
 {
-    "env":{
-        "PORT":3000,
-        "PSWD":"root",
-        "DBNAME":"mybrand"
+    "env": {
+        "PORT": 3000,
+        "PSWD": "root",
+        "DBNAME": "mybrand",
+        "JWT_KEY": "myBrand-secreTKey-"
     }
 }
