@@ -1,7 +1,8 @@
 import express from 'express'
 const router = express.Router()
 import userController from '../controllers/userControler'
-router.post('/signup',userController.createUser)
+router.post('/signup', userController.createUser)
+router.post('/login', userController.login)
 
 
 
