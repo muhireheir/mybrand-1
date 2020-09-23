@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cpanel -blog list</title>
+	<link rel="stylesheet" href="../css/adminpanel.css">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+</head>
+<body class="body">
+<header>
+	<span class="fa fa-bars nav-toggler"></span><div class="flex" id="myprofile">
+		<span><a href="plofile.html"><i class="fa fa-user"></i> Plofile</a></span>
+	</div>
+</header>
+<section class="content-section">
+	<nav class="sidenav">
+		<ul class="navbar">
+			<li class="nav-item">
+				<a href="index.html" id="dashboard-icon" class="nav-link icon" >Dashboard</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" id="blog-icon" class="nav-link icon dropdown-toggler" data-target="#articles-submenu">Blogs</a>
+			</li>
+			<div id="articles-submenu" class="submenu">
+					<li class="nav-item">
+				<a href="blog-list.html"  class="nav-link icon" >BlogList</a>
+			   </li>
+			   <li class="nav-item">
+				<a href="new-blog.html"  class="nav-link icon" >Create Blog</a>
+			   </li>
+				</div>
+
+			
+			<li class="nav-item">
+				<a href="users.html" id="user-icon" class="nav-link icon">Users</a>
+			</li>
+			
+			<li class="nav-item">
+				<a href="message.html" id="message-icon" class="nav-link icon">Queries</a>
+			</li>
+						<li class="nav-item">
+				<a href="#" id="logout" class="nav-link icon">logout</a>
+			</li>
+
+		</ul>
+	</nav>
+	<div class="main-content">
+		<div class="row flex">
+			<div class="card card-lg">
+				<h4>Blog Articles list</h4>
+				<div class="row flex" id="container">
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+<div class="delete-layer">
+	<div  id="pop-up"  class="card card-sm elevation-0">
+		<h5>Are  you sure You want to delete this blog?</h5>
+		<button onclick="return closepopup();">No</button> <button onclick="return deleteBlog();">Yes</button>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="../js/loader.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+ <script type="text/javascript" src="../js/firebase.js"></script>
+ <script type="text/javascript" src="../js/admin.js"></script>
+<script type="text/javascript">
+	let blogContainer=document.querySelector("#container");
+	let delBtns;
+	let blogId;
+	let delLayer=document.querySelector('.delete-layer');
+	db.collection('blogs').get().then(snapshoot=>{
+		snapshoot.docs.forEach(doc=>{
+			let route={title:doc.data().b_title,id:doc.id};
+			let data=btoa(JSON.stringify(route));
+			blogContainer.innerHTML+=`<div data-doc="${doc.id}" class='card card-sm has-actions'><img src='${doc.data().b_feature_img}' /><p>${doc.data().b_title}</p><div class='card-actions'><span class='card-action'><i class='fa fa-eye primary-color'> ${doc.data().views}</i></span><span class='card-action'><a href="blog-comments.html#${data}"><i class='fa fa-comments warning-color'> ${doc.data().comments}</i></a> </span><span class='card-action'><i class='fa fa-trash error-color' onclick="return openDelPopup('${doc.id}');"></i></span><span class='card-action '><a href="edit-blog.html#${doc.id}" class='secondary-color'><i class='fa fa-pencil'></i></a></span></div></div>`;
+			document.querySelector(".loader-overlay").style.display="none";			
+		})
+	}).catch(err=>{
+		document.querySelector(".loader-overlay").style.display="none";
+		alert(err);
+	})
+let openDelPopup=(id)=>{
+	blogId=id;
+	delLayer.style.display='block';
+}
+let  deleteBlog=()=>{
+	document.querySelector(".loader-overlay").style.display="block";
+	db.collection("blogs").doc(blogId).delete().then(()=>{
+		let blog=document.querySelector('[data-doc='+blogId+']');
+		delLayer.style.display='none';
+		document.querySelector(".loader-overlay").style.display="none";
+		blog.remove();
+	}).catch(err=>{
+		delLayer.style.display='none';
+		document.querySelector(".loader-overlay").style.display="none";
+		alert(err);
+	});
+}
+let closepopup=()=>{
+	delLayer.style.display='none';
+}
+
+</script>
+
+	
+</script>
+</html>
