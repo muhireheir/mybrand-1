@@ -2,15 +2,14 @@ import express from 'express'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
+import BlogRoutes from './routes/blog'
 const dbConn = mongoose.connect(`mongodb+srv://root:${process.env.PSWD}@mybrand.rqcqj.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const app = express()
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use('/home',(req,res,next)=>{
-    res.json({message:'working'})
-})
+app.use('/blogs', BlogRoutes)
 app.use((req, res, next) => {
     let error = new Error('Route Not  found.')
     error.status = 404
