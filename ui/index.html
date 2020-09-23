@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='copyright' content=''>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" type="text/css" href="libs/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="pages/libs/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="./pages/css/main.css">
 </head>
 <body>
 	<section class="navigation">
@@ -20,7 +20,8 @@
 				<li class="navbar-nav"><a class="nav-link" href="pages/plofile.html">About Me</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="pages/contact.html">Contact</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="pages/blog.html">Blog</a> </li>
-				<li class="navbar-nav"><a class="nav-link" href="pages/login.html">Sign in</a> </li>
+				<li class="navbar-nav"  id="showsignIn"><a class="nav-link" href="pages/login.html">login</a> </li>
+				<li class="navbar-nav"  id="showplofile"><a class="nav-link" href="pages/account.html">Account</a> </li>
 			</ul>
 		</nav>
 	</section>
@@ -33,7 +34,7 @@
 				</div>
 				<div id="intro-img-content" class="intro-box-content">
 					<div class="intro-rouded-bg">
-						<img src="img/pic-1.jpg" />
+						<img src="./pages/img/pic-1.jpg" />
 					</div>
 				</div>
 			</div>
@@ -46,7 +47,7 @@
 			<div class="section-content" id="service-items">
 				<div class="service-item" id="service-1">
 					<div class="service-box-heading">
-						<img class="service-img" src="img/Group-27.png" />
+						<img class="service-img" src="pages/img/Group-27.png" />
 					</div>
 					<p class="service-title">Website prototyiping</p>
 					<div class="service-description">
@@ -56,7 +57,7 @@
 				<!--  -->
 				<div class="service-item" id="service-2">
 					<div class="service-box-heading">
-						<img class="service-img" src="img/Group-28.png" />
+						<img class="service-img" src="pages/img/Group-28.png" />
 					</div>
 					<p class="service-title">Web development</p>
 					<div class="service-description">
@@ -68,7 +69,7 @@
 
 				<div class="service-item" id="service-3">
 					<div class="service-box-heading">
-						<img class="service-img" src="img/Group-29.png" />
+						<img class="service-img" src="pages/img/Group-29.png" />
 					</div>
 					<p class="service-title">Audits & Testing</p>
 					<div class="service-description">
@@ -99,6 +100,12 @@
 	</section>
 
 </body>
-<script type="text/javascript">
-</script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+ <script type="text/javascript" src="pages/js/firebase.js"></script>
+ <script type="text/javascript" src="pages/js/auth.js"></script>
 </html>
+
+
+

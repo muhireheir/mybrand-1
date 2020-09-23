@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='copyright' content=''>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" type="text/css" href="../libs/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="libs/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 <section class="navigation">
@@ -20,7 +20,8 @@
 				<li class="navbar-nav"><a class="nav-link" href="plofile.html">About Me</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="contact.html">Contact</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="blog.html">Blog</a> </li>
-				<li class="navbar-nav"><a class="nav-link" href="login.html">Sign in</a> </li>
+				<li class="navbar-nav" id="showsignIn"><a class="nav-link" href="login.html">Sign in</a> </li>
+				<li class="navbar-nav"  id="showplofile"><a class="nav-link" href="account.html">Account</a> </li>
 			</ul>
 		</nav>
 	</section>
@@ -28,14 +29,14 @@
 		<div class="plofile-box-main">
 			<div class="plofile-box-2" id="plofile-pic">
 				<div class="img">
-					<img src="../img/pic-1.jpg">
+					<img src="img/pic-1.jpg">
 				</div>
 				<div class="name">
 					<p>UMUHIRE Heir Heritier</p>
 				</div>
 			</div>
 			<div class="plofile-box-2" id="plofile-desc">
-			
+				<p class="section-heading">Hello! This is <b>UMUHIRE Heritier</b></p>
 				<p class="desc">I'm Fullstack web developer based in rusizi district,my aim is to automate every manual office work that makes auditing and control hard to do. create something incomparable that is worth trusting and using.</p>
 			</div>
 		</div>
@@ -122,7 +123,13 @@
 	</section>
 	<!-- END OF FOOTER -->
 </body>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript">	
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+ <script type="text/javascript" src="js/firebase.js"></script>
+ <script type="text/javascript" src="js/main.js"></script>
+ <script type="text/javascript" src="js/auth.js"></script>
+
+
 </script>
 </html>

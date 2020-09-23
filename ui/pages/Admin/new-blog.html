@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cpanel -add blog</title>
+	<link rel="stylesheet" href="../css/adminpanel.css">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+</head>
+<body class="body">
+<header>
+	<span class="fa fa-bars nav-toggler"></span>
+	<div class="flex" id="myprofile">
+		<span><a href="plofile.html"><i class="fa fa-user"></i> Plofile</a></span>
+	</div>
+</header>
+<section class="content-section">
+	<nav class="sidenav">
+		<ul class="navbar">
+			<li class="nav-item">
+				<a href="index.html" id="dashboard-icon" class="nav-link icon" >Dashboard</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" id="blog-icon" class="nav-link icon dropdown-toggler" data-target="#articles-submenu">Blogs</a>
+			</li>
+			<div id="articles-submenu" class="submenu">
+					<li class="nav-item">
+				<a href="blog-list.html"  class="nav-link icon" >BlogList</a>
+			   </li>
+			   <li class="nav-item">
+				<a href="new-blog.html"  class="nav-link icon" >Create Blog</a>
+			   </li>
+				</div>
+
+			
+			<li class="nav-item">
+				<a href="users.html" id="user-icon" class="nav-link icon">Users</a>
+			</li>
+			
+			<li class="nav-item">
+				<a href="message.html" id="message-icon" class="nav-link icon">Queries</a>
+			</li>
+						<li class="nav-item">
+				<a href="#" id="logout" class="nav-link icon">logout</a>
+			</li>
+
+		</ul>
+	</nav>
+	<div class="main-content">
+		<div class="row flex">
+			
+			
+			<div class="card card-lg">
+				<h4>Add new blog</h4>
+				<div class="row">
+					<div class="form">
+						<form onsubmit="return false;" name="articleform">
+							<div class="form-group">
+								<label>Artricle's title</label>
+								<input type="text" name="title" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>featured image</label>
+								<input type="file" id="img-loader" class="form-control" />
+							</div>
+							<img src=""  id="feature-image" />
+							
+							
+							<div class="form-group">
+								<label>Article's content</label>
+								<textarea name="content" class="form-control textarea"></textarea>
+							</div>
+							<div class="form-group">
+								<button class="btn" onclick="return savearticle();">Publish</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+ <script type="text/javascript" src="../js/loader.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+ <script type="text/javascript" src="../js/firebase.js"></script>
+ <script src="../js/main.js"></script>
+ <script type="text/javascript" src="../js/admin.js"></script>
+ <script src="https://smtpjs.com/v3/smtp.js"></script>
+ <script type="text/javascript">
+ let imageselector=document.querySelector("#img-loader");
+let feature_img=document.querySelector("#feature-image");
+imageselector.addEventListener('change',evt=>{
+	let img1= new Image();
+	let img=URL.createObjectURL(evt.target.files[0]);
+
+	feature_img.src=img;
+	// subscribes
+})
+let savearticle = (evt)=>{
+	let subs=[];
+	document.querySelector(".loader-overlay").style.display="block";
+	const canvas = document.createElement('canvas');
+	const ctx = canvas.getContext('2d');
+	canvas.width =feature_img.naturalWidth;
+	canvas.height = feature_img.naturalHeight;
+	ctx.drawImage(feature_img, 0, 0);
+	let image= canvas.toDataURL('image/png');
+	let title=document.forms['articleform']['title'].value;
+	let content=document.forms['articleform']['content'].value;
+	db.collection('blogs').add({
+		b_title:title,
+		b_feature_img:image,
+		b_content:content,
+		views:0,
+		comments:0
+	}).then(resp=>{
+		document.forms['articleform']['title'].value="";
+		document.forms['articleform']['content'].value="";
+		feature_img.src="";
+		
+   		db.collection('subscribes').get().then(snapshoot=>{
+   			return snapshoot.docs.forEach(doc=>{
+   				let email=doc.data().email;
+   				subs.push(email);
+   			})
+   		}).then(()=>{
+   			let recepient=subs.toString();
+   			let t= `'${recepient}'`;
+   			Email.send({ 
+	        Host: "smtp.gmail.com", 
+	        Username: "muhire416@gmail.com", 
+	        Password: "aghkurscdnzjlwgq", 
+	        To: recepient,
+	        From: "muhire416@gmail.com", 
+	        Subject: "Heir newsletter", 
+	        Body: `<p>Hello! We have a new article which might interest you.</p><p><a href="singleblog.html#${resp.id}">${title}</a></p>`,
+	      }).then(msg=>{
+	      	
+	      }).catch()
+	     
+   		})
+
+		// 
+		document.querySelector(".loader-overlay").style.display="none";
+
+	}).catch(err=>{
+		alert(err);
+		document.querySelector(".loader-overlay").style.display="none";
+	})
+}
+document.querySelector(".loader-overlay").style.display="none";
+ </script>
+</body>
+</html>

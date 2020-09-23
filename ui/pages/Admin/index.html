@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cpanel</title>
+	<link rel="stylesheet" href="../css/adminpanel.css">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+</head>
+<body  class="body">
+<header>
+	<span id="adminMenuToggler" class="fa fa-bars nav-toggler"></span>
+	<div class="flex" id="myprofile">
+		<span><a href="plofile.html"><i class="fa fa-user"></i> Plofile</a></span>
+	</div>
+</header>
+<section class="content-section">
+	<nav class="sidenav">
+		<ul class="navbar">
+			<li class="nav-item">
+				<a href="index.html" id="dashboard-icon" class="nav-link icon" >Dashboard</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" id="blog-icon" class="nav-link icon dropdown-toggler" data-target="#articles-submenu">Blogs</a>
+			</li>
+			<div id="articles-submenu" class="submenu">
+					<li class="nav-item">
+				<a href="blog-list.html"  class="nav-link icon" >BlogList</a>
+			   </li>
+			   <li class="nav-item">
+				<a href="new-blog.html"  class="nav-link icon" >Create Blog</a>
+			   </li>
+				</div>
+
+			
+			<li class="nav-item">
+				<a href="users.html" id="user-icon" class="nav-link icon">Users</a>
+			</li>
+			
+			<li class="nav-item">
+				<a href="message.html" id="message-icon" class="nav-link icon">Queries</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" id="logout" class="nav-link icon">logout</a>
+			</li>
+
+		</ul>
+	</nav>
+	<div class="main-content">
+		<div class="row flex">
+			<div class="card card-sm flex">
+				<div class="d-box d-icon flex">
+					<i class="fa fa-list-alt primary-color"></i>
+				</div>
+				<div class="d-box">
+					<p><span class="d-nbr primary-color" id="blog-nbr">N/A</span><br>Blogs</p>
+				</div>
+			</div>
+			<div class="card card-sm flex">
+				<div class="d-box d-icon flex">
+					<i class="fa fa-inbox secondary-color"></i>
+				</div>
+				<div class="d-box">
+					<p><span class="d-nbr secondary-color" id="msg-nbr">N/A</span><br>Queries</p>
+				</div>
+			</div>
+			<div class="card card-sm flex">
+				<div class="d-box d-icon flex">
+					<i class="fa fa-users warning-color"></i>
+				</div>
+				<div class="d-box">
+					<p><span class="d-nbr warning-color" id="users-nbr">N/A</span><br>Users</p>
+				</div>
+			</div>
+			<div class="card card-sm flex">
+				<div class="d-box d-icon flex">
+					<i class="fa fa-external-link error-color"></i>
+				</div>
+				<div class="d-box">
+					<p><span class="d-nbr error-color" id="subs-nbr">N/A</span><br>Subscribers</p>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+	</div>
+</section>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+ <script type="text/javascript" src="../js/firebase.js"></script>
+ <script type="text/javascript" src="../js/admin.js"></script>
+ <script type="text/javascript" src="../js/loader.js"></script>
+ <script type="text/javascript">
+ 	db.collection('blogs').get().then(snapshot=>{
+ 		document.querySelector("#blog-nbr").innerHTML=snapshot.docs.length;
+ 		document.querySelector(".loader-overlay").style.display='none';
+ 	});
+ 	db.collection('queries').get().then(snapshot=>{
+ 		document.querySelector("#msg-nbr").innerHTML=snapshot.docs.length;
+ 	});
+ 	db.collection('users').get().then(snapshot=>{
+ 		document.querySelector("#users-nbr").innerHTML=snapshot.docs.length;
+ 	});
+ 	db.collection('subscribes').get().then(snapshot=>{
+ 		document.querySelector("#subs-nbr").innerHTML=snapshot.docs.length;
+ 	});
+ </script>
+</body>
+</html>

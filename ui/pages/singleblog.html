@@ -9,13 +9,14 @@
 	<link rel="stylesheet" type="text/css" href="./libs/font-awesome-4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
 </head>
-<body class="body">
+<body class='body'>
 <section class="navigation">
 		<a href="" class="logo">heir.</a>
+
 		<input type="checkbox"class="menu-toggler"/>
 		<nav class="navbar">
 			<ul class="navbar-items">
-				<li class="navbar-nav"><a class="nav-link" href="index.html">Home</a></li>
+				<li class="navbar-nav"><a class="nav-link" href="../index.html">Home</a></li>
 				<li class="navbar-nav"><a class="nav-link" href="plofile.html">About Me</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="contact.html">Contact</a> </li>
 				<li class="navbar-nav"><a class="nav-link" href="blog.html">Blog</a> </li>
@@ -27,18 +28,49 @@
 	<section class="blog-wrapper">
 		<div class="blog-content">
 			<div class="articles">
-				<!--  -->
-				<div class="pagination">
-					<a href="">1</a>
-					<a href="">2</a>
-					<a href="">3</a>
-					<a href="">4</a>
-					<a href="">10</a>
-					<a href="">12</a>
-					<a href="">33</a>
+				<div class="single-article">
+
+					<div class="article-image">
+						<img id="article-image">
+					</div>
+					<div class="article-summary">
+						<h3 class="blog-title"></h3>
+						<p class="blog-text"></p>
+					<!-- conntact form -->
+				<div id="contact-form">
+				<div class="form-wrapper">
+					<h3 id="reachtome">Comment on this</h3>
+					<div id="ann">
+						<p>
+							Only authenticated users can comment. <a   href="javascript:signin();">click here to login</a>
+						</p>
+					</div>
+					<form name="comment-form" id="comment-form"  onsubmit="return addcomment();">
+
+
+						<div class="form-input" >
+							<label class="icon" id="name"></label><input class="comment-form"   type="text" name="name" placeholder="Full Name">
+						</div>
+						<div class="form-input" >
+							<label class="icon" id="email"></label><input class="comment-form"   type="text" name="email" placeholder="Your Email">
+						</div>
+						<div class="form-textarea" >
+						<textarea name="comment" class="comment-form" placeholder="Your comment"></textarea>
+						</div>
+						<div class="form-input">
+							<button>Send Message</button>
+						</div>
+
+					</form>
 				</div>
 			</div>
-			<div class="blog-nav">
+
+					</div>
+
+				</div>
+			</div>
+
+						<div class="blog-nav">
 				<div class="blog-nav-container">
 					<h3>Recent Stories</h3>
 					<div class="recent-stories">
@@ -62,6 +94,7 @@
 								</p>
 							</div>
 						</div>
+
 						<div  class="one-post">
 							<div id="img">
 								<img src="img/blog/blog-3.png">
@@ -72,12 +105,15 @@
 								</p>
 							</div>
 						</div>
+						
+						
+						
 					</div>
 				</div>
 				<div class="newsletter">
 					<h3>Newsletter</h3>
-					<input type="email" id="subscribe-form">
-					<button id="submit">Subscribe</button>
+					<input type="" name="">
+					<button>Subscribe</button>
 				</div>
 			</div>
 		</div>
@@ -103,25 +139,66 @@
 			</div>
 		</div>
 	</section>
-
 	<!-- END OF FOOTER -->
+</body>
  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
- <script type="text/javascript" src="js/firebase.js"></script>
- <script src="js/blog-client.js"></script>
+  <script type="text/javascript" src="js/firebase.js"></script>
+ <script src="js/singleblog-client.js"></script>
  <script src="js/loader.js"></script>
  <script type="text/javascript" src="js/auth.js"></script>
+
+
  <script type="text/javascript">
- 	document.querySelector("#submit").addEventListener('click',e=>{
- 		let email=document.querySelector('#subscribe-form').value;
- 		db.collection('subscribes').add({email:email,subscribed_at:''}).then(resp=>{
- 			let id=resp.id;
- 			db.collection('subscribes').doc(id).update({subscribed_at:firebase.firestore.FieldValue.serverTimestamp()});
- 		}).catch(error=>{
- 			alert(error);
+ 	let addcomment=()=>{
+ 		let name=document.forms['comment-form']['name'].value;
+ 		let email=document.forms['comment-form']['email'].value;
+ 		let comment=document.forms['comment-form']['comment'].value;
+ 		db.collection('blog_comments').add({b_id:blogId,name:name,email:email,comment:comment}).then(resp=>{
+ 			document.forms['comment-form']['name'].value="";
+			document.forms['comment-form']['email'].value="";
+			document.forms['comment-form']['comment'].value="";
+			db.collection('blogs').doc(blogId).get().then(snapshot=>{
+				let comm=snapshot.data().comments;
+				let newcomments=parseInt(comm)+1;
+				db.collection('blogs').doc(blogId).update({comments:newcomments});
+			})
+
  		})
- 	})
+ 		return false;
+ 			}
+ 			// restrict  u authennticated   from  commenting
+
+ auth.onAuthStateChanged(cred=>{
+
+	if(cred){
+		let verfied=cred.emailVerified;
+		if(verfied==true){
+		document.querySelector("#comment-form").style.display='block';
+		document.querySelector("#ann").style.display='none';
+	let user=cred.uid;
+	db.collection('users').doc(user).get().then(userInfo=>{
+		let  useremail=userInfo.data().email;
+		let  name=userInfo.data().name;
+	});
+		}else{
+			alert('We have sent an email to verify  if '+cred.email+' belongs to you. Check your inbox');
+			document.querySelector("#comment-form").style.display='none';
+		}
+		
+}else{
+	document.querySelector("#comment-form").style.display='none';
+	document.querySelector("#ann").style.display='block';
+}
+
+})
+
+let signin=()=>{
+	localStorage.setItem('auth-first','#'+blogId)
+		window.location.href='login.html';
+	
+}
+
  </script>
-</body>
 </html>
