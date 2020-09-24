@@ -1,5 +1,4 @@
 import Blog from '../models/blogs'
-
 import mongoose from 'mongoose'
 export default class blogController {
     static async getall(req, res) {
@@ -25,6 +24,18 @@ export default class blogController {
             res.status(500).json({ error: error.message })
         }
     }
+    static async oneBlog(req, res) {
+    try {
+        const id = res.blog._id
+    const views = parseInt(res.blog.views) + 1
+    await Blog.updateOne({ _id: id }, { $set: { views: views } })
+    res.status(200).json({blog:res.blog})
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+
+
+}
 
 
 
