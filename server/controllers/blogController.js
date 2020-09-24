@@ -1,5 +1,5 @@
 import Blog from '../models/blogs'
-import multer from 'multer'
+
 import mongoose from 'mongoose'
 export default class blogController {
 
