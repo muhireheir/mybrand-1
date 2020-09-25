@@ -36,6 +36,18 @@ export default class blogController {
 
 
 }
+static async updateBlog(req, res) {
+    try {
+        let fields = {}
+        for (let op of Object.entries(req.body)) {
+            fields[op[0]] = op[1]
+        }
+        await Blog.update({ _id: req.params.id }, { $set: fields })
+        res.status(200).json({ message: 'blog updated' })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
 
 
 
