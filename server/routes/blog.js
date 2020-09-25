@@ -7,6 +7,7 @@ import singleBlog from '../middleware/singleBlog'
 router.post('/', imgUploader, blogController.add)
 router.get('/',blogController.getall)
 router.get('/:id', singleBlog,blogController.oneBlog)
+router.patch('/:id',singleBlog,blogController.updateBlog)
 
 
 module.exports = router
