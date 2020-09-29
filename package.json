@@ -7,7 +7,8 @@
     "coverage": "nyc --reporter=html --reporter=text mocha --timeout 30000 --require dotenv/config --require @babel/register --exit || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "nyc mocha --timeout 30000  --require dotenv/config --require @babel/register --exit || true",
-    "start": "nodemon --exec babel-node -r dotenv/config server/server"
+    "start": "nodemon --exec babel-node -r dotenv/config server/server",
+    "coverage1": "./coverage/lcov.info | coveralls"
   },
   "author": "Umuhire heritier",
   "license": "ISC",
