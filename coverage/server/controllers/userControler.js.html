@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">44.83% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>13/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>3/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">44.83% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>13/29</span>
             </div>
         
             
@@ -170,18 +170,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,20 +236,20 @@ export default class usersController {
     }
     // logging user  in
     static login(req,res){
-        User.findOne({email:req.body.email}).exec().then(<span class="fstat-no" title="function not covered" >user=</span>&gt;{
+        User.findOne({email:req.body.email}).exec().then(user=&gt;{
             
-<span class="cstat-no" title="statement not covered" >            if(user){</span>
-<span class="cstat-no" title="statement not covered" >                bcrypt.c</span>ompare(req.body.password,user.password,<span class="fstat-no" title="function not covered" >(e</span>rr,result)=&gt;{
-<span class="cstat-no" title="statement not covered" >                    console.</span>log('error:'+err)
-<span class="cstat-no" title="statement not covered" >                    console.</span>log('result:'+result)
-<span class="cstat-no" title="statement not covered" >                    if(result){</span>
-                        const token = <span class="cstat-no" title="statement not covered" >jwt.s</span>ign({
+            <span class="missing-if-branch" title="else path not taken" >E</span>if(user){
+                bcrypt.compare(req.body.password,user.password,(err,result)=&gt;{
+                    console.log('error:'+err)
+                    console.log('result:'+result)
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if(result){
+                        const token = jwt.sign({
                             email: user.email,
                             adminRole: user.adminRole,
                             _id:user._id
                         }, process.env.JWT_KEY, { expiresIn: "1h" })
-<span class="cstat-no" title="statement not covered" >                        res.</span>status(200).json({ message: "loggedIn!",adminRole: user.adminRole, token: token })
-<span class="cstat-no" title="statement not covered" >                        console.</span>log(result)
+                        res.status(200).json({ message: "loggedIn!",adminRole: user.adminRole, token: token })
+                        console.log(result)
                     }else{
 <span class="cstat-no" title="statement not covered" >                        res.</span>status(401).json({ error: 'Invalid cridential'})
                     }
@@ -268,7 +268,7 @@ export default class usersController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Sep 29 2020 21:32:47 GMT+0200 (Central Africa Time)
+                at Tue Sep 29 2020 22:01:01 GMT+0200 (Central Africa Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
