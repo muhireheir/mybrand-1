@@ -1,13 +1,33 @@
-import express from 'express'
-const router = express.Router()
+import express  from 'express'
+const router= express.Router()
 import blogController from '../controllers/blogController'
-import imgUploader from '../helpers/uploader'
+import  checkAuth  from '../middleware/check-auth'
+import multer from 'multer'
 import singleBlog from '../middleware/singleBlog'
-
-router.post('/', imgUploader, blogController.add)
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null,Date.now()+file.originalname)
+    }
+  })
+const upload = multer({ storage: storage })
 router.get('/',blogController.getall)
+router.post('/new',checkAuth,upload.single('image'),blogController.add)
+router.patch('/:id',checkAuth,singleBlog,blogController.updateBlog)
 router.get('/:id', singleBlog,blogController.oneBlog)
-router.patch('/:id',singleBlog,blogController.updateBlog)
+router.delete('/:id',checkAuth,singleBlog,blogController.deleteBlog)
+router.post('/:id/comment',checkAuth,singleBlog,blogController.addcomment)
 
 
-module.exports = router
+
+
+
+
+
+
+
+
+
+module.exports=router

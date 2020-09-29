@@ -8,7 +8,7 @@ try{
         res.blog=blog
         next()
     }else{
-        res.status(200).json({message:'No blog found!'})
+        res.status(404).json({message:'No blog found!'})
     }
 }catch(error){
     res.status(500).json({error:error.message})
