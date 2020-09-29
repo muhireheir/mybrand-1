@@ -4,11 +4,8 @@ const email = req.body.email
 if(email.match(emailRegex)){
 	next()
 }else{
-	res.status(400).json({error:"Invalid email Adress"})
+	return res.status(400).json({error:"Invalid email Adress"})
 }
-
-
-
 }
 
 

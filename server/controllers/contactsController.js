@@ -9,10 +9,10 @@ export default class {
                 email:req.body.email,
                 message:req.body.message
             })
-            await message.save()
-            res.status(201).json({message:'Your message well received'})
+            await message.save();
+            return res.status(201).json({message:'Your message well received'});
         } catch (error) {
-            res.status(500).json({error:error.message})
+            return res.status(500).json({error:error.message});
         }
     }
 }

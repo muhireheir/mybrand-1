@@ -6,7 +6,7 @@ try{
     const blog=await Blog.findOne({_id:id})
     if(blog){
         res.blog=blog
-        next()
+        next();
     }else{
         res.status(404).json({message:'No blog found!'})
     }
