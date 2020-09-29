@@ -1,111 +1,114 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>UMUHIRE Heritier</title>
-	<meta charset="utf-8">
+    <title>UMUHIRE Heritier</title>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name='copyright' content=''>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" type="text/css" href="./libs/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="./css/main.css">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="./libs/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="body">
-<section class="navigation">
-		<a href="" class="logo">heir.</a>
-		<input type="checkbox"class="menu-toggler"/>
-		<nav class="navbar">
-			<ul class="navbar-items">
-				<li class="navbar-nav"><a class="nav-link" href="index.html">Home</a></li>
-				<li class="navbar-nav"><a class="nav-link" href="plofile.html">About Me</a> </li>
-				<li class="navbar-nav"><a class="nav-link" href="contact.html">Contact</a> </li>
-				<li class="navbar-nav"><a class="nav-link" href="blog.html">Blog</a> </li>
-				<li class="navbar-nav" id="showsignIn"><a class="nav-link" href="login.html">Sign in</a> </li>
-				<li class="navbar-nav"  id="showplofile"><a class="nav-link" href="account.html">Account</a> </li>
-			</ul>
-		</nav>
-	</section>
-	<section class="blog-wrapper">
-		<div class="blog-content">
-			<div class="articles">
-				<!--  -->
-				<div class="pagination">
-					<a href="">1</a>
-					<a href="">2</a>
-					<a href="">3</a>
-					<a href="">4</a>
-					<a href="">10</a>
-					<a href="">12</a>
-					<a href="">33</a>
-				</div>
-			</div>
-			<div class="blog-nav">
-				<div class="blog-nav-container">
-					<h3>Recent Stories</h3>
-					<div class="recent-stories">
-						<div  class="one-post">
-							<div id="img">
-								<img src="img/blog/blog-1.jpg">
-							</div>
-							<div id="post-sample">
-								<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
-								</p>
-							</div>
-						</div>
-						<div  class="one-post">
-							<div id="img">
-								<img src="img/blog/blog-2.jpg">
-							</div>
-							<div id="post-sample">
-								<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
-								</p>
-							</div>
-						</div>
-						<div  class="one-post">
-							<div id="img">
-								<img src="img/blog/blog-3.png">
-							</div>
-							<div id="post-sample">
-								<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="newsletter">
-					<h3>Newsletter</h3>
-					<input type="email" id="subscribe-form">
-					<button id="submit">Subscribe</button>
-				</div>
-			</div>
-		</div>
-		
-	</section>
-		<!-- FOOTER -->
-	<section class="section-xs" id="footer">
-		<div   class="footer-wrapper">
-			<div id="title-footer">
-				<h2>Do you have a project? let's talk.</h2>
-			</div>
+    <section class="navigation">
+        <a href="" class="logo">heir.</a>
+        <input type="checkbox" class="menu-toggler" />
+        <nav class="navbar">
+            <ul class="navbar-items">
+                <li class="navbar-nav"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="navbar-nav"><a class="nav-link" href="plofile.html">About Me</a> </li>
+                <li class="navbar-nav"><a class="nav-link" href="contact.html">Contact</a> </li>
+                <li class="navbar-nav"><a class="nav-link" href="blog.html">Blog</a> </li>
+                <li class="navbar-nav" id="showsignIn"><a class="nav-link" href="login.html">Sign in</a> </li>
+                <li class="navbar-nav" id="showplofile"><a class="nav-link" href="account.html">Account</a> </li>
+            </ul>
+        </nav>
+    </section>
+    <section class="blog-wrapper">
+        <div class="blog-content">
+            <div class="articles">
+                <!--  -->
+                <div class="pagination">
+                    <a href="">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="">4</a>
+                    <a href="">10</a>
+                    <a href="">12</a>
+                    <a href="">33</a>
+                </div>
+            </div>
+            <div class="blog-nav">
+                <div class="blog-nav-container">
+                    <h3>Recent Stories</h3>
+                    <div class="recent-stories">
+                        <div class="one-post">
+                            <div id="img">
+                                <img src="img/blog/blog-1.jpg">
+                            </div>
+                            <div id="post-sample">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="one-post">
+                            <div id="img">
+                                <img src="img/blog/blog-2.jpg">
+                            </div>
+                            <div id="post-sample">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="one-post">
+                            <div id="img">
+                                <img src="img/blog/blog-3.png">
+                            </div>
+                            <div id="post-sample">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="newsletter">
+                    <h3>Newsletter</h3>
+                    <input type="email" id="subscribe-form">
+                    <button id="submit">Subscribe</button>
+                </div>
+            </div>
+        </div>
 
-			<div id="social-icons">
-			 <div  class="icon">
-			 	<i class="fa fa-facebook"></i>
-			 </div>
-			 <div  class="icon">
-			 	<i class="fa fa-twitter"></i>
-			 </div>
-			 <div  class="icon">
-			 	<i class="fa fa-linkedin"></i>
-			 </div>
-			</div>
-		</div>
-	</section>
+    </section>
+    <!-- FOOTER -->
+    <section class="section-xs" id="footer">
+        <div class="footer-wrapper">
+            <div id="title-footer">
+                <h2>Do you have a project? let's talk.</h2>
+            </div>
 
-	<!-- END OF FOOTER -->
- <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+            <div id="social-icons">
+                <div class="icon">
+                    <i class="fa fa-facebook"></i>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-twitter"></i>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-linkedin"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- END OF FOOTER -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
  <script type="text/javascript" src="js/firebase.js"></script>
@@ -122,6 +125,10 @@
  			alert(error);
  		})
  	})
- </script>
+ </script> -->
+    <script>
+        console.log(axios)
+    </script>
 </body>
+
 </html>
