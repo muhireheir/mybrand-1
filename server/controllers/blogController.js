@@ -49,6 +49,15 @@ static async updateBlog(req, res) {
     }
 }
 
+  static async deleteBlog(req, res) {
+        try {
+            await Blog.remove({ _id:req.params.id })
+            res.status(200).json({message:'Blog Deleted'}).exec()
+        } catch (error) {
+            res.status(500).json({ error: error.message })
+        }
+    }
+
 
 
 

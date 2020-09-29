@@ -8,6 +8,7 @@ router.post('/', imgUploader, blogController.add)
 router.get('/',blogController.getall)
 router.get('/:id', singleBlog,blogController.oneBlog)
 router.patch('/:id',singleBlog,blogController.updateBlog)
+router.delete('/:id',singleBlog,blogController.deleteBlog)
 
 
 module.exports = router
