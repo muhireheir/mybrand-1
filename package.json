@@ -6,7 +6,7 @@
   "scripts": {
     "coverage": "nyc --reporter=html --reporter=text mocha --timeout 90000 --require dotenv/config --require @babel/register --exit || true",
     "test": "nyc mocha --timeout 90000  --require dotenv/config --require @babel/register --exit || true",
-    "start": "nodemon --exec babel-node -r server/server"
+    "start": "nodemon --exec babel-node server/server"
 
   },
   "author": "Umuhire heritier",
@@ -20,9 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",
-    "multer": "^1.4.2"
-  },
-  "devDependencies": {
+    "multer": "^1.4.2",
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.5",
