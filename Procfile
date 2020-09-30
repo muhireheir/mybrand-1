@@ -1,0 +1,1 @@
+web: nodemon --exec babel-node -r server/server
