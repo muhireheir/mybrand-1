@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
   })
 const upload = multer({ storage: storage })
 router.get('/',blogController.getall)
-router.post('/new',checkAuth,upload.single('image'),blogController.add)
+router.post('/',checkAuth,upload.single('image'),blogController.add)
 router.patch('/:id',checkAuth,singleBlog,blogController.updateBlog)
 router.get('/:id', singleBlog,blogController.oneBlog)
 router.delete('/:id',checkAuth,singleBlog,blogController.deleteBlog)

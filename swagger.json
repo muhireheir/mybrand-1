@@ -1,0 +1,488 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My brand API",
+    "description": "My brand, A personal blog API documentation",
+    "contact": {
+      "name": "UMUHIRE Heritier",
+      "email": "muhire416@gmail.com"
+    }
+  },
+  "host": "localhost:2000",
+  "schemes": [
+    "http"
+  ],
+  "paths": {    "/users/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Registerin new user",
+        "parameters": [
+          {
+            "name": "User credentials",
+            "in": "body",
+            "description": "Password and email of a user",
+            "required": true,
+            "schema": {
+              "example": {
+                "email": "muhire416@gmail.com",
+                "password": "Umusaza36",
+                "name":"umuhire heritier"
+              }
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Registration succeed"
+          },
+          "409": {
+            "description": "using aleady used email adress"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login a user",
+        "parameters": [
+          {
+            "name": "User credentials",
+            "in": "body",
+            "description": "Password and email of a user",
+            "required": true,
+            "schema": {
+              "example": {
+                "email": "muhire416@gmail.com",
+                "password": "Umusaza36"
+              }
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Login succeed"
+          },
+          "401": {
+            "description": "Incorrect credentials"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/blogs": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Create a new blogPost",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "title",
+            "description": "Blog title",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "content",
+            "description": "blog Content",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "blogs created successfully!"
+          },
+          "401": {
+            "description": "Validation fails"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of blogss.",
+        "description": "This will list all created blogss.",
+        "tags": [
+          "Blogs"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/blogs/{id}/comment": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Create a new comment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of blog to comment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Comment",
+            "description": "Comment Body",
+            "schema": {
+              "example": {
+                "comment":"wow! good documentation"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment added successfully!"
+          },
+          "401": {
+            "description": "Validation fails"
+          }
+        }
+      }
+    },
+    "/blogs/{id}": {
+      "get": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Find blog by ID",
+        "description": "Returns a single blog",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of blog to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "blogs not found"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Updates an blogs",
+        "description": "Update the blogs",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogsID",
+            "in": "path",
+            "description": "ID of blogs that needs to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Updated title of the blogs",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "in": "formData",
+            "description": "Updated content of the blogs",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "body",
+            "description": "Updated file of the blogs",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Deletes an blogs",
+        "description": "Delete a single blogs",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogsID",
+            "in": "path",
+            "description": "blogs id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "blogs not found"
+          }
+        }
+      }
+    },
+    "/contact": {
+      "post": {
+        "tags": [
+          "Queries"
+        ],
+        "summary": "Create a new query",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Query",
+            "description": "Query Body",
+            "schema": {
+              "example":{
+                "name":"IRADAKUNDA Irenee",
+                "email":"iradukunda9@gmail.com",
+                "message":"good job heritier!"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "your query received!"
+          },
+          
+          "401": {
+            "description": "Validation fails"
+          }
+        }
+      },
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Returns a list of queries.",
+        "description": "This will list all created queries.",
+        "tags": [
+          "Queries"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "blogs": {
+      "type": "object",
+      "required": [
+        "title",
+        "content",
+        "image"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "1whw2i2si277e37"
+        },
+        "blogTitle": {
+          "type": "string",
+          "example": "This is an blogs"
+        },
+        "blogContent": {
+          "type": "string",
+          "example": "These are some contents"
+        },
+        "blogImage": {
+          "type": "string"
+        },
+        "views": {
+          "type": "number"
+        },
+        "comments": {
+          "type": "number"
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "required": [
+        "name",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "1whw2i2si277e37"
+        },
+        "name": {
+          "type": "string",
+          "example": "UMUHIRE HERITIER"
+        },
+        "email": {
+          "type": "string",
+          "example": "muhire416@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "password"
+        }
+      }
+    },
+    "queries": {
+      "type": "object",
+      "required": [
+        "name",
+        "email",
+        "content"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "UMUHIRE Heritier"
+        },
+        "email": {
+          "type": "string",
+          "example": "muhire416@gmail.com"
+        },
+        "message": {
+          "type": "string",
+          "example": "These are some texts"
+        }
+      }
+    },
+    "comments": {
+      "type": "object",
+      "required": [
+        "user",
+        "blog",
+        "content"
+      ],
+      "properties": {
+        "user": {
+          "type": "string",
+          "example": "5f6c9bd973ec4641bd7c3ae4"
+        },
+        "blog":{
+          "type":"string",
+          "example": "5f6c9bd973ec4641bd7c3ae4"
+
+        },
+        "content": {
+          "type": "string",
+          "example": "This is some comment"
+        }
+      }
+    }
+  }
+}
