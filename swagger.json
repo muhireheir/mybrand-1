@@ -9,9 +9,10 @@
       "email": "muhire416@gmail.com"
     }
   },
-  "host": "localhost:2000",
+  "host": "https://muhire-heir.herokuapp.com/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {    "/users/register": {
       "post": {
