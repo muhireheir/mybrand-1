@@ -27,7 +27,7 @@ export default class profileController{
             }
             
             await Profile.updateOne({userid:id},{$set:fields});
-            return res.json({message:'plofile updated!'})
+            return res.status(200).json({message:'plofile updated!'})
         }catch(error){
             return res.status(500).json({error:error.message});
         }

@@ -137,3 +137,20 @@ describe('Blog Api',()=>{
 	})
 
 })
+
+
+// test plofile
+
+describe('Plofile test',()=>{
+	describe('Patch /plofile',()=>{
+		it('Update the plofile',(done)=>{
+			chai.request(server).get('/profile').send({email:'muhire416',tel:"0786910057",home:'kamembe/rsz'})
+			.end((error,response)=>{
+				response.should.have.status(200)
+				done()
+
+			})
+		})
+
+})
+});
