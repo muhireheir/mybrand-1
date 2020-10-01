@@ -20,7 +20,7 @@ describe('Blog Api',()=>{
 		})
 		// bad request method
 		it('bad http request method ,should not get blog list',(done)=>{
-			chai.request(server).post('/blogs')
+			chai.request(server).put('/blogs')
 			.end((error,response)=>{
 				response.should.have.status(404)
 				response.body.should.be.a('object')
@@ -66,7 +66,7 @@ describe('Blog Api',()=>{
 		
 
 		it("should not  create new blog becouse unAuthencticated",(done)=>{
-			chai.request(server).post('/blogs/new')
+			chai.request(server).post('/blogs')
 			.set('Content-Type', 'application/x-www-form-urlencoded')
             .field('Content-Type', 'multipart/form-data')
 			.field('title','this is test title')
