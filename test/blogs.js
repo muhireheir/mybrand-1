@@ -100,7 +100,7 @@ describe('Blog Api',()=>{
 		//creating blog
 
 		it("should  create new blog ",(done)=>{
-			chai.request(server).post('/blogs/new')
+			chai.request(server).post('/blogs')
 			.set('Authorization', validtoken)
             .set('Content-Type', 'multipart/form-data')
 			.field('title','this is test title')
@@ -118,7 +118,7 @@ describe('Blog Api',()=>{
 		// missing 
 
 		it("should not  create new blog missing required parameters",(done)=>{
-			chai.request(server).post('/blogs/new')
+			chai.request(server).post('/blogs')
 			.set('Authorization', validtoken)
             .set('Content-Type', 'multipart/form-data')
 			.field('title','this is test title')
