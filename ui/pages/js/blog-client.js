@@ -1,7 +1,6 @@
-
 let articles_container=document.querySelector(".articles");
 db.collection('blogs').get().then((snapshot)=>{
-	snapshot.docs.forEach(doc=>{
+    snapshot.docs.forEach(doc=>{
         // console.log(doc.data());
         let article_wrapper=document.createElement('div');
         article_wrapper.classList.add('single-article');

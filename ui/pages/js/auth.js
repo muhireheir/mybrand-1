@@ -1,3 +1,4 @@
+
 auth.onAuthStateChanged(auth=>{
 	if(auth!=null || auth!=undefined){
 	let role=auth.uid;

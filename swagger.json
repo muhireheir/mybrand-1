@@ -9,7 +9,7 @@
       "email": "muhire416@gmail.com"
     }
   },
-  "host": "muhire-heir.herokuapp.com/",
+  "host": "localhost:2000",
   "schemes": [
     "http",
     "https"
