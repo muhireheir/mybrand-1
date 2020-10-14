@@ -4,8 +4,9 @@
   "description": "Make company global travel and accommodation easy and convenient for the strong workforce of savvy members of staff, by leveraging the modern web.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require @babel/polyfill --require @babel/register src/test/test.js --timeout 10000",
+    "test": "mocha --require @babel/polyfill --require @babel/register src/test/index.js --timeout 10000",
     "start": "nodemon --exec babel-node ./src/index",
+    "coverage":"nyc --reporter=lcov --reporter=text npm run test ",
     "lint": "./node_modules/.bin/eslint src/",
     "dev": "./node_modules/.bin/eslint src/ --fix && npm start"
   },
@@ -30,6 +31,7 @@
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "nyc": "^15.1.0"
   }
 }
