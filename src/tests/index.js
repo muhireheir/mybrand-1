@@ -9,10 +9,16 @@ import logoutTest from './logoutTest/logout.test';
 import permissionTest from './permissions/permissions';
 import roleTest from './roles/roles';
 import rolePermissionTest from './rolePermissions/rolePermissions';
+import { loginTests } from './users/login.test';
+import createTrip from './trips/createTripRequest';
 import assignUsers from './roles/assignUsers';
-
+import { createlocations } from './Accomodations/locations'
+import { createAccomodation } from './Accomodations/accomodations'
+import { createRooms } from './Accomodations/rooms'
+import { DeleteAccomos } from './Accomodations/delete'
 describe('test the first endpoint', welcome);
 describe('test the manual login endpoint', manualLogintest);
+describe('logIn pre defined users', loginTests);
 describe('User Registration and Verification', manualRegistration);
 describe('test the facebook login api', facebookLoginTest);
 describe('test the google login endpoint', googleLoginTest);
@@ -22,3 +28,8 @@ describe('test for accessing permission endpoint', permissionTest);
 describe('test for accessing role endpoint', roleTest);
 describe('test for accessing rolePermission endpoint', rolePermissionTest);
 describe('Test for assigning users to manager endpoints', assignUsers);
+describe('test for creating and view trip request', createTrip);
+describe('Test for locations', createlocations)
+describe('Accomodations Test', createAccomodation)
+describe('Rooms Test', createRooms);
+describe('Delete rooms,locations and accomodations', DeleteAccomos)
