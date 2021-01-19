@@ -24,7 +24,7 @@ db.collection('blogs').get().then((snapshot)=>{
         //add contents
         img.src=doc.data().b_feature_img;
         title.textContent=doc.data().b_title;
-        txt.textContent=doc.data().b_content.substr(0,90)+'...';
+        txt.innerHTML=doc.data().b_content.substr(0,90)+'...';
         link.appendChild(img_wrapper);
         link.append(summary);
         link.href="singleblog.html#"+doc.id;

@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='copyright' content=''>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
 	
 </head>
 <body class="body">
@@ -70,7 +73,7 @@
 							
 							<div class="form-group">
 								<label>Article's content</label>
-								<textarea name="content" class="form-control textarea"></textarea>
+								<textarea id="ck-field" name="content" class="form-control textarea">muhire</textarea>
 							</div>
 							<div class="form-group">
 								<button class="btn" onclick="return updateblog();">UPDATE</button>
@@ -100,6 +103,7 @@
 			document.forms['articleform']['content'].value=doc.data().b_content;
 			feature_img.src=doc.data().b_feature_img;
 			document.querySelector(".loader-overlay").style.display="none";
+			$('#ck-field').summernote();
 		}).catch(err=>{
 			document.querySelector(".loader-overlay").style.display="none";
 			alert(err);
@@ -133,6 +137,5 @@
 }
 getBlogData();
 </script>
-
 </body>
 </html>

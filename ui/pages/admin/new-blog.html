@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='copyright' content=''>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+
+
+
 	
 </head>
 <body class="body">
@@ -70,7 +76,7 @@
 							
 							<div class="form-group">
 								<label>Article's content</label>
-								<textarea name="content" class="form-control textarea"></textarea>
+								<textarea name="content" id="ck-field" class="form-control textarea"></textarea>
 							</div>
 							<div class="form-group">
 								<button class="btn" onclick="return savearticle();">Publish</button>
@@ -112,6 +118,7 @@ let savearticle = (evt)=>{
 	let image= canvas.toDataURL('image/png');
 	let title=document.forms['articleform']['title'].value;
 	let content=document.forms['articleform']['content'].value;
+	console.log(content);
 	db.collection('blogs').add({
 		b_title:title,
 		b_feature_img:image,
@@ -154,6 +161,9 @@ let savearticle = (evt)=>{
 	})
 }
 document.querySelector(".loader-overlay").style.display="none";
+$(document).ready(function() {
+        $('#ck-field').summernote();
+    });
  </script>
 </body>
 </html>
